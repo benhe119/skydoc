@@ -37,7 +37,9 @@ java_binary(
     name = "stardoc",
     main_class = "com.google.devtools.build.skydoc.SkydocMain",
     runtime_deps = [
-        ":prebuilt_stardoc_binary",
+        # ":prebuilt_stardoc_binary",
+        # replaced with version that allows depending on @bazel_tools
+        "@skydoc_deploy//jar"
     ],
     jvm_flags = [
         # quiet warnings from com.google.protobuf.UnsafeUtil,

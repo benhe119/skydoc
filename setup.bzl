@@ -15,7 +15,7 @@
 """Repository external dependency resolution functions."""
 
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_jar")
 
 def _include_if_not_defined(repo_rule, name, **kwargs):
     if name not in native.existing_rules():
@@ -124,4 +124,13 @@ def skydoc_repositories():
     native.bind(
         name = "six",
         actual = "@six_archive//:six",
+    )
+
+    #################################################
+    ##### Experimental part added by @graknlabs #####
+    #################################################
+    http_jar(
+        name = "skydoc_deploy",
+        url = "https://github.com/graknlabs/bazel/releases/download/0.1/skydoc_deploy.jar",
+        sha256 = "c3016d3f9b13389aef7f96b3df5b8a248ca8722b05d04ef615936ac504104584",
     )
